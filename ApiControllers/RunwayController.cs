@@ -85,7 +85,7 @@ public class RunwayController : ControllerBase
             var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == payload.UserId);
             if (user == null) return BadRequest("User not found");
 
-            if (user.Credits < 25)
+            if (user.Credits < 50)
             {
                 return BadRequest("Insufficient credits");
             }
@@ -114,7 +114,7 @@ public class RunwayController : ControllerBase
                 Prompt = payload.PromptText ?? "Image to video generation",
                 Status = "PENDING",
                 OutputUrls = "[]",
-                CreditCost = 25,
+                CreditCost = 50,
                 CreatedAt = taskResponse.CreatedAt,
                 UpdatedAt = taskResponse.UpdatedAt ?? DateTime.UtcNow
             };
@@ -132,9 +132,6 @@ public class RunwayController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-    
-    [HttpGet("test-status")]
-    
 
     [HttpPost("video-upscale")]
     public async Task<IActionResult> UpscaleVideo([FromBody] RunwayVideoUpscalePayload payload)

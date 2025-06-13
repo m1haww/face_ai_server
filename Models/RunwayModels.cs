@@ -46,7 +46,6 @@ public class RunwayImageToVideoRequest
     public int Duration { get; set; } = 10;
 }
 
-// Video Upscale Models
 public class RunwayVideoUpscaleRequest
 {
     [JsonPropertyName("videoUri")]
@@ -56,7 +55,6 @@ public class RunwayVideoUpscaleRequest
     public string Model { get; set; } = "upscale_v1";
 }
 
-// Shared Models
 public class RunwayReferenceImage
 {
     [JsonPropertyName("uri")]
@@ -72,13 +70,13 @@ public class RunwayPromptImage
     public string Uri { get; set; } = string.Empty;
 
     [JsonPropertyName("position")]
-    public string Position { get; set; } = "first"; // "first" or "last"
+    public string Position { get; set; } = "first";
 }
 
 public class RunwayContentModeration
 {
     [JsonPropertyName("publicFigureThreshold")]
-    public string PublicFigureThreshold { get; set; } = "auto"; // "auto" or "low"
+    public string PublicFigureThreshold { get; set; } = "auto";
 }
 
 public class RunwayTaskResponse
@@ -154,7 +152,7 @@ public class RunwayImageToVideoPayload
     public string? PromptText { get; set; }
 
     [JsonPropertyName("duration")]
-    public int Duration { get; set; } = 10;
+    public int Duration { get; set; } = 5;
 
     [JsonPropertyName("seed")]
     public int? Seed { get; set; }
