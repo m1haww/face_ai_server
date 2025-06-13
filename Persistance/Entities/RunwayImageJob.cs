@@ -16,6 +16,9 @@ public class RunwayImageJob
     [Column("runway-task-id")]
     public string RunwayTaskId { get; set; }
     
+    [Column("task-type")]
+    public string TaskType { get; set; } = string.Empty; // text_to_image, image_to_video, video_upscale
+    
     [Column("status")]
     public string Status { get; set; }
     
