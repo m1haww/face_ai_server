@@ -28,10 +28,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var credentials = Environment.GetEnvironmentVariable("FirebaseAuthCredentials");
 
-FirebaseApp.Create(new AppOptions()
+if (!string.IsNullOrEmpty(credentials))
 {
-    Credential = GoogleCredential.FromJson(credentials)
-});
+    FirebaseApp.Create(new AppOptions()
+    {
+        Credential = GoogleCredential.FromJson(credentials)
+    });
+}
 
 builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();

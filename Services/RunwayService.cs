@@ -14,7 +14,7 @@ public class RunwayService : IRunwayService
     public RunwayService(HttpClient httpClient)
     {
         _httpClient = httpClient;
-        _apiKey = Environment.GetEnvironmentVariable("RunwayApiKey") ?? throw new InvalidOperationException("RunwayApiKey not configured");
+        _apiKey = Environment.GetEnvironmentVariable("RunAwayKey") ?? throw new InvalidOperationException("RunAwayKey not configured");
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
         _httpClient.DefaultRequestHeaders.Add("X-Runway-Version", "2024-11-06");
     }
