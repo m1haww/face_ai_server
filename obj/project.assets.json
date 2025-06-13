@@ -3022,11 +3022,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/petrugrigor/Documents/PhotoAiBackend/PhotoAiBackend.csproj",
+      "projectUniqueName": "/Users/petrugrigor/Documents/face_ai_server/PhotoAiBackend.csproj",
       "projectName": "PhotoAiBackend",
-      "projectPath": "/Users/petrugrigor/Documents/PhotoAiBackend/PhotoAiBackend.csproj",
+      "projectPath": "/Users/petrugrigor/Documents/face_ai_server/PhotoAiBackend.csproj",
       "packagesPath": "/Users/petrugrigor/.nuget/packages/",
-      "outputPath": "/Users/petrugrigor/Documents/PhotoAiBackend/obj/",
+      "outputPath": "/Users/petrugrigor/Documents/face_ai_server/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/petrugrigor/.nuget/NuGet/NuGet.Config"
@@ -3052,7 +3052,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {

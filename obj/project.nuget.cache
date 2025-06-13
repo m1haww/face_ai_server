@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iT9REcrQhIA=",
+  "dgSpecHash": "JS60yhXVH1Y=",
   "success": true,
-  "projectFilePath": "/Users/petrugrigor/Documents/PhotoAiBackend/PhotoAiBackend.csproj",
+  "projectFilePath": "/Users/petrugrigor/Documents/face_ai_server/PhotoAiBackend.csproj",
   "expectedPackageFiles": [
     "/Users/petrugrigor/.nuget/packages/firebaseadmin/3.1.0/firebaseadmin.3.1.0.nupkg.sha512",
     "/Users/petrugrigor/.nuget/packages/google.api.gax/4.9.0/google.api.gax.4.9.0.nupkg.sha512",

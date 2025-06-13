@@ -1,11 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "WqoKJ3PDeg09iQuZQYS5sKgqL8Oa6xkLQNLFT3Ai4Rk=",
-  "Source": "PhotoAiBackend",
-  "BasePath": "_content/PhotoAiBackend",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
-}
+{"Version":1,"Hash":"txo4Gqo5zJPlbpSIDNSi2ZX/9/+M/rQqfK28HbDKDsg=","Source":"PhotoAiBackend","BasePath":"_content/PhotoAiBackend","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
