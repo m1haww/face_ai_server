@@ -106,9 +106,9 @@ public class JobController : ControllerBase
 
         return Ok(new
         {
-            imageJobs = imageJobs,
-            enhanceJobs = enhanceJobs,
-            runwayJobs = runwayJobs,
+            imageJobs,
+            enhanceJobs,
+            runwayJobs
         });
     }
 }

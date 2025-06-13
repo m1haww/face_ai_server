@@ -14,7 +14,9 @@ public class RunwayService : IRunwayService
     public RunwayService(HttpClient httpClient)
     {
         _httpClient = httpClient;
-        _apiKey = Environment.GetEnvironmentVariable("RunAwayKey") ?? throw new InvalidOperationException("RunAwayKey not configured");
+        // _apiKey = Environment.GetEnvironmentVariable("RunAwayKey") ?? throw new InvalidOperationException("RunAwayKey not configured");
+        _apiKey =
+            "key_b983e22f13ca4363b28b42c96e76d54ae7c9ab11d3036e539820c34cbfa34a3240573db0131e53033419c8b14c4077b891eba73b346e2b72e4f8b0b22e78a02c";
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiKey);
         _httpClient.DefaultRequestHeaders.Add("X-Runway-Version", "2024-11-06");
     }
@@ -88,7 +90,6 @@ public class RunwayService : IRunwayService
     {
         var response = await _httpClient.DeleteAsync($"{_baseUrl}/tasks/{taskId}");
         
-        // 204 means successful cancellation/deletion, 404 means already deleted (which is fine)
         return response.StatusCode == System.Net.HttpStatusCode.NoContent || response.StatusCode == System.Net.HttpStatusCode.NotFound;
     }
 

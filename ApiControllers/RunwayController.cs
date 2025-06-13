@@ -102,6 +102,10 @@ public class RunwayController : ControllerBase
 
             var taskResponse = await _runwayService.CreateImageToVideoTaskAsync(request);
 
+            Console.WriteLine("--------------------------------------");
+            Console.WriteLine(taskResponse);
+            Console.WriteLine("--------------------------------------");
+
             var runwayJob = new RunwayImageJob
             {
                 UserId = payload.UserId,
@@ -118,7 +122,6 @@ public class RunwayController : ControllerBase
             await _dbContext.RunwayImageJobs.AddAsync(runwayJob);
             await _dbContext.SaveChangesAsync();
 
-            // Add task to polling service
             _pollingService.AddTask(taskResponse.Id);
 
             return Ok(new { jobId = runwayJob.Id, taskId = taskResponse.Id });
@@ -129,6 +132,9 @@ public class RunwayController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+    
+    [HttpGet("test-status")]
+    
 
     [HttpPost("video-upscale")]
     public async Task<IActionResult> UpscaleVideo([FromBody] RunwayVideoUpscalePayload payload)
@@ -251,114 +257,7 @@ public class RunwayController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-
-    [HttpDelete("cancel-task/{taskId}")]
-    public async Task<IActionResult> CancelTask(string taskId)
-    {
-        try
-        {
-            var success = await _runwayService.CancelOrDeleteTaskAsync(taskId);
-            
-            if (success)
-            {
-                var runwayJob = await _dbContext.RunwayImageJobs
-                    .FirstOrDefaultAsync(r => r.RunwayTaskId == taskId);
-
-                if (runwayJob != null)
-                {
-                    runwayJob.Status = "CANCELLED";
-                    await _dbContext.SaveChangesAsync();
-                }
-            }
-
-            return Ok(new { success, message = success ? "Task cancelled successfully" : "Failed to cancel task" });
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            return BadRequest(e.Message);
-        }
-    }
-
-    [HttpGet("list-jobs")]
-    public async Task<IActionResult> GetUserRunwayJobs([FromQuery] Guid userId)
-    {
-        try
-        {
-            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
-            if (user == null)
-            {
-                return Ok(new List<object>());
-            }
-
-            var runwayJobs = await _dbContext.RunwayImageJobs
-                .Where(r => r.UserId == userId)
-                .OrderByDescending(r => r.CreatedAt)
-                .ToListAsync();
-
-            var result = runwayJobs.Select(job => new
-            {
-                jobId = job.Id,
-                taskId = job.RunwayTaskId,
-                taskType = job.TaskType,
-                status = job.Status,
-                prompt = job.Prompt,
-                createdAt = job.CreatedAt,
-                updatedAt = job.UpdatedAt,
-                outputs = job.OutputUrls,
-                creditCost = job.CreditCost,
-                failureReason = job.FailureReason
-            }).ToList();
-
-            return Ok(result);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            return BadRequest(e.Message);
-        }
-    }
-
-    [HttpGet("list-video-jobs")]
-    public async Task<IActionResult> GetUserVideoJobs([FromQuery] Guid userId)
-    {
-        try
-        {
-            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
-            if (user == null)
-            {
-                return Ok(new List<object>());
-            }
-
-            var runwayJobs = await _dbContext.RunwayImageJobs
-                .Where(r => r.UserId == userId)
-                .Where(r => r.TaskType == "image_to_video" || r.TaskType == "video_upscale")
-                .OrderByDescending(r => r.CreatedAt)
-                .ToListAsync();
-
-            var result = runwayJobs.Select(job => new
-            {
-                jobId = job.Id,
-                taskId = job.RunwayTaskId,
-                taskType = job.TaskType,
-                status = job.Status,
-                prompt = job.Prompt,
-                createdAt = job.CreatedAt,
-                updatedAt = job.UpdatedAt,
-                outputs = job.OutputUrls,
-                creditCost = job.CreditCost,
-                failureReason = job.FailureReason
-            }).ToList();
-
-            return Ok(result);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            return BadRequest(e.Message);
-        }
-    }
-
+    
     [HttpGet("job/{jobId}")]
     public async Task<IActionResult> GetRunwayJob(int jobId)
     {
