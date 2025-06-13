@@ -8,10 +8,9 @@ public class RunwayImageJob
     [Column("id")]
     public int Id { get; set; }
     
-    [Column("image-job-id")]
-    public int ImageJobId { get; set; }
-    
-    public ImageJob ImageJob { get; set; }
+    [Column("user-id")]
+    public Guid UserId { get; set; }
+    public User? User { get; set; }
     
     [Column("runway-task-id")]
     public string RunwayTaskId { get; set; }
@@ -19,8 +18,17 @@ public class RunwayImageJob
     [Column("task-type")]
     public string TaskType { get; set; } = string.Empty; // text_to_image, image_to_video, video_upscale
     
+    [Column("prompt")]
+    public string Prompt { get; set; } = string.Empty;
+    
     [Column("status")]
     public string Status { get; set; }
+    
+    [Column("output-urls")]
+    public string OutputUrls { get; set; } = "[]"; // JSON array of output URLs
+    
+    [Column("credit-cost")]
+    public int CreditCost { get; set; }
     
     [Column("failure-reason")]
     public string? FailureReason { get; set; }
@@ -33,4 +41,8 @@ public class RunwayImageJob
     
     [Column("updated-at")]
     public DateTime UpdatedAt { get; set; }
+    
+    // Keep ImageJobId as nullable for backward compatibility during migration
+    [Column("image-job-id")]
+    public int? ImageJobId { get; set; }
 }

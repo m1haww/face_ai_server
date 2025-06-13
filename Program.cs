@@ -14,6 +14,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddHttpClient<IRunwayService, RunwayService>();
+builder.Services.AddSingleton<IRunwayPollingService, RunwayPollingService>();
+builder.Services.AddHostedService<RunwayPollingService>(provider => 
+    (RunwayPollingService)provider.GetRequiredService<IRunwayPollingService>());
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<AppDbContext>(options =>
