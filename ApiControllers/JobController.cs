@@ -83,7 +83,8 @@ public class JobController : ControllerBase
             {
                 imageJobs = new List<object>(),
                 enhanceJobs = new List<object>(),
-                runwayJobs = new List<object>()
+                runwayJobs = new List<object>(),
+                userCredits = 0
             });
         }
 
@@ -106,7 +107,8 @@ public class JobController : ControllerBase
         {
             imageJobs,
             enhanceJobs,
-            runwayJobs
+            runwayJobs,
+            userCredits = foundUser.Credits
         });
     }
 }

@@ -41,10 +41,8 @@ public class RunwayPollingService : BackgroundService, IRunwayPollingService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        // Wait for the application to start
         await Task.Delay(5000, stoppingToken);
 
-        // Load pending tasks from database on startup
         await LoadPendingTasksAsync(stoppingToken);
 
         while (!stoppingToken.IsCancellationRequested)
@@ -59,7 +57,7 @@ public class RunwayPollingService : BackgroundService, IRunwayPollingService
                 await Task.WhenAll(tasks);
             }
 
-            await Task.Delay(1000, stoppingToken); // Check every second
+            await Task.Delay(1000, stoppingToken);
         }
     }
 

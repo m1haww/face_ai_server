@@ -102,10 +102,6 @@ public class RunwayController : ControllerBase
 
             var taskResponse = await _runwayService.CreateImageToVideoTaskAsync(request);
 
-            Console.WriteLine("--------------------------------------");
-            Console.WriteLine(taskResponse);
-            Console.WriteLine("--------------------------------------");
-
             var runwayJob = new RunwayImageJob
             {
                 UserId = payload.UserId,
@@ -170,7 +166,6 @@ public class RunwayController : ControllerBase
             await _dbContext.RunwayImageJobs.AddAsync(runwayJob);
             await _dbContext.SaveChangesAsync();
 
-            // Add task to polling service
             _pollingService.AddTask(taskResponse.Id);
 
             return Ok(new { jobId = runwayJob.Id, taskId = taskResponse.Id });
