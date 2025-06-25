@@ -16,7 +16,7 @@ public class RunwayImageJob
     public string RunwayTaskId { get; set; }
     
     [Column("task-type")]
-    public string TaskType { get; set; } = string.Empty; // text_to_image, image_to_video, video_upscale
+    public string TaskType { get; set; } = string.Empty;
     
     [Column("prompt")]
     public string Prompt { get; set; } = string.Empty;
@@ -25,7 +25,7 @@ public class RunwayImageJob
     public string Status { get; set; }
     
     [Column("output-urls")]
-    public string OutputUrls { get; set; } = "[]"; // JSON array of output URLs
+    public string OutputUrls { get; set; } = "[]";
     
     [Column("credit-cost")]
     public int CreditCost { get; set; }

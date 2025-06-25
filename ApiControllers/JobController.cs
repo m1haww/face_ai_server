@@ -94,6 +94,7 @@ public class JobController : ControllerBase
             .ToListAsync();
 
         var enhanceJobs = await _dbContext.EnhanceJobs
+            .Include(ej => ej.EnhanceImages)
             .Where(j => j.UserId == userId)
             .OrderByDescending(j => j.CreatedAt)
             .ToListAsync();
