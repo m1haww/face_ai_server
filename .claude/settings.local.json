@@ -4,7 +4,12 @@
       "Bash(ls:*)",
       "Bash(dotnet build)",
       "Bash(dotnet build:*)",
-      "Bash(dotnet ef migrations:*)"
+      "Bash(dotnet ef migrations:*)",
+      "Bash(dotnet ef database:*)",
+      "Bash(dotnet ef dbcontext:*)",
+      "Bash(dotnet run:*)",
+      "Bash(rm:*)",
+      "Bash(ASPNETCORE_ENVIRONMENT=Development dotnet run --no-build 2 >& 1)"
     ],
     "deny": []
   }

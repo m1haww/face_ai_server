@@ -23,7 +23,4 @@ public enum PresetCategory
 
     [EnumMember(Value = "Gym Mode")]
     Gym,
-
-    [EnumMember(Value = "Runway Generated")]
-    RunwayGenerated
 }

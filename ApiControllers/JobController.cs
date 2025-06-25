@@ -89,7 +89,7 @@ public class JobController : ControllerBase
         }
 
         var imageJobs = await _dbContext.ImageJobs
-            .Where(j => j.UserId == userId && j.PresetCategory != PresetCategory.RunwayGenerated)
+            .Where(j => j.UserId == userId)
             .OrderByDescending(j => j.CreationDate)
             .ToListAsync();
 
