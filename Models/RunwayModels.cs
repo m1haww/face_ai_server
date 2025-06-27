@@ -13,10 +13,7 @@ public class RunwayTextToImageRequest
 
     [JsonPropertyName("model")]
     public string Model { get; set; } = "gen4_image";
-
-    [JsonPropertyName("seed")]
-    public int? Seed { get; set; }
-
+    
     [JsonPropertyName("referenceImages")]
     public List<RunwayReferenceImage>? ReferenceImages { get; set; }
 

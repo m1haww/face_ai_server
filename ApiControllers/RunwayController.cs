@@ -43,7 +43,6 @@ public class RunwayController : ControllerBase
                 PromptText = payload.PromptText,
                 Ratio = payload.Ratio,
                 Model = "gen4_image",
-                Seed = payload.Seed,
                 ReferenceImages = payload.ReferenceImages,
                 ContentModeration = new RunwayContentModeration { PublicFigureThreshold = "auto" }
             };
