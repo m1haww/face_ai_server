@@ -109,7 +109,8 @@ public class JobController : ControllerBase
             imageJobs,
             enhanceJobs,
             runwayJobs,
-            userCredits = foundUser.Credits
+            userCredits = foundUser.Credits,
+            userTuneId = foundUser.TuneId
         });
     }
 }
