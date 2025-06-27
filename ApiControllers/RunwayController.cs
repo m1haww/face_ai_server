@@ -99,27 +99,27 @@ public class RunwayController : ControllerBase
                 Seed = payload.Seed
             };
 
-            // Return sample runway job without calling the service
-            var sampleRunwayJob = new RunwayImageJob
+            var taskResponse = await _runwayService.CreateImageToVideoTaskAsync(request);
+
+            var runwayJob = new RunwayImageJob
             {
-                Id = 12345,
                 UserId = payload.UserId,
-                RunwayTaskId = $"sample-task-{Guid.NewGuid()}",
+                RunwayTaskId = taskResponse.Id,
                 TaskType = "image_to_video",
                 Prompt = payload.PromptText ?? "Image to video generation",
                 Status = "PENDING",
                 OutputUrls = "[]",
                 CreditCost = 50,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                CreatedAt = taskResponse.CreatedAt,
+                UpdatedAt = taskResponse.UpdatedAt ?? DateTime.UtcNow
             };
 
-            // Don't save to database or add to polling service for sample
-            await _dbContext.RunwayImageJobs.AddAsync(sampleRunwayJob);
+            await _dbContext.RunwayImageJobs.AddAsync(runwayJob);
             await _dbContext.SaveChangesAsync();
-            // _pollingService.AddTask(sampleRunwayJob.RunwayTaskId);
 
-            return Ok(sampleRunwayJob);
+            _pollingService.AddTask(taskResponse.Id);
+
+            return Ok(runwayJob);
         }
         catch (Exception e)
         {
