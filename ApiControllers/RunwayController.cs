@@ -119,7 +119,7 @@ public class RunwayController : ControllerBase
 
             _pollingService.AddTask(taskResponse.Id);
 
-            return Ok(new { jobId = runwayJob.Id, taskId = taskResponse.Id });
+            return Ok(runwayJob);
         }
         catch (Exception e)
         {
