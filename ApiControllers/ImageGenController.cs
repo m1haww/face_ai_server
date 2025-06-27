@@ -254,7 +254,11 @@ public class ImageGenController : ControllerBase
             await _dbContext.ImageJobs.AddAsync(tempJob);
             await _dbContext.SaveChangesAsync();
             
-            return Ok("Tune has started.");
+            return Ok(new
+            {
+                message = "Model tunning has started.",
+                tuneId = decoded.Id
+            });
         }
         catch (Exception e)
         {
