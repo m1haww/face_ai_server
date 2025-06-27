@@ -96,6 +96,7 @@ public class RunwayController : ControllerBase
                 Ratio = payload.Ratio,
                 PromptText = payload.PromptText,
                 Duration = payload.Duration,
+                Seed = payload.Seed
             };
 
             var taskResponse = await _runwayService.CreateImageToVideoTaskAsync(request);
