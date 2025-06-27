@@ -115,8 +115,8 @@ public class RunwayController : ControllerBase
             };
 
             // Don't save to database or add to polling service for sample
-            // await _dbContext.RunwayImageJobs.AddAsync(sampleRunwayJob);
-            // await _dbContext.SaveChangesAsync();
+            await _dbContext.RunwayImageJobs.AddAsync(sampleRunwayJob);
+            await _dbContext.SaveChangesAsync();
             // _pollingService.AddTask(sampleRunwayJob.RunwayTaskId);
 
             return Ok(sampleRunwayJob);
